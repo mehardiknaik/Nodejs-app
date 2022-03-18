@@ -5,6 +5,7 @@ import cors from 'cors';
 import routes from "./routes/main.routes";
 // consts
 const app = express();
+const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(
   express.json({
@@ -14,14 +15,7 @@ app.use(
 
 app.use("/", routes);
 
-// arrow functions
-const server = app.listen(5000, () => {
-  // destructuring
-  const { address, port } = server.address();
-
-  // string interpolation:
-  console.log(`Example app listening at http://${address}:${port}`);
-});
+app.listen(port, () => console.log(`Server is running on port ${port}`));
 
 //error Handler
 app.use((req, res, next) => {
